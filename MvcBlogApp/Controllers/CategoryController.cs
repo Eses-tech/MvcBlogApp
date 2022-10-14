@@ -23,6 +23,7 @@ namespace MvcBlogApp.Controllers
 
             ViewBag.CategoryNumbers = categorynumbers;
             return View(categorylist);
+
         }
     }
 }
