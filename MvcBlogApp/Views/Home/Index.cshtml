@@ -1,0 +1,10 @@
+﻿@using MvcBlogApp.Models
+@model List<Blog> 
+@{
+    ViewBag.Title = "Home Page";
+}
+
+@foreach (var item in Model)
+{
+    <p>@item.Header</p>
+}
