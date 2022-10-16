@@ -22,8 +22,23 @@ namespace MvcBlogApp.Controllers
             }
 
             ViewBag.CategoryNumbers = categorynumbers;
-            return View(categorylist);
+            return View(categorylist.OrderByDescending(c=>c.Id).ToList());
 
+        }
+
+        public ActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(string CategoryName)
+        {
+            Category _category = new Category();
+            _category.CategoryName = CategoryName;
+            _context.Categories.Add(_category);
+            _context.SaveChanges();
+            return RedirectToAction("Index","Category");
         }
     }
 }

@@ -1,10 +1,58 @@
 ﻿@using MvcBlogApp.Models
-@model List<Blog> 
+@model List<BlogModel> 
 @{
     ViewBag.Title = "Home Page";
 }
 
-@foreach (var item in Model)
-{
-    <p>@item.Header</p>
-}
+<h2>Blog Listesi</h2>
+
+<div class="row">
+    <div class="col-md-8">
+
+        @foreach (var item in Model)
+        {
+            @*<div class="blogItem">
+                <h3 class="page-header">@item.Header</h3>
+                <p>
+                    <span class="glyphicon glyphicon-time">
+                        @item.UploadDate
+                    </span>
+                </p>
+                <hr />
+                <img class="img-responsive" src="https://via.placeholder.com/900x300" />
+                <p>
+                    @item.Explanation
+                </p>
+                <button class="btn btn-primary">Daha Fazla...</button>
+            </div>*@
+            //--------------------------------------------------------------------
+        <div class="card" style="width: 18rem;">
+            <h5 class="card-title">@item.Header</h5>
+           
+            <img class="card-img-top" src="https://via.placeholder.com/900x300" alt="Card image cap">
+            <h6>&nbsp;</h6>
+            <div class="card-body">
+
+                <p class="card-text">@item.Explanation</p>
+
+                <p>
+                    <span class="glyphicon glyphicon-time">
+                        @item.UploadDate
+                    </span>
+                </p>
+                <button class="btn btn-primary">Daha Fazla...</button>
+                <hr />
+            </div>
+
+        </div>
+       
+        }
+
+    </div>
+
+    <div class="col-md-4">
+
+    </div>
+
+</div>
+

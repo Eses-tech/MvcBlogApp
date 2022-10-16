@@ -3,5 +3,54 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<h2>Blog Ekle</h2>
+@using (Html.BeginForm())
+ {
+<div class="form-horizontal">
+
+    <div class="form-group">
+        <label for="InputHeader" class="control-label col-md-3">Başlık</label>
+        @Html.TextBox("Header", null, new { @class = "form-control col-md-6" })
+
+    </div>
+    <div class="form-group">
+        <label for="InputExplanation" class="control-label col-md-3">Açıklama</label>
+        @Html.TextArea("Explanation", null, new { @class = "form-control col-md-6" })
+
+    </div>
+    <div class="form-group">
+        <label for="InputContent" class="control-label col-md-3">İçerik</label>
+        @Html.TextArea("Content", null, new { @class = "form-control col-md-6" })
+
+    </div>
+
+    <div class="form-group">
+        <label for="InputCategoryName" class="control-label col-md-3">Kategori</label>
+        @Html.DropDownList("CategoryId", null,"Kategori Seçin", new { @class = "form-control col-md-6" })
+
+
+    </div>
+
+    <div class="form-group">
+        <label for="InputPicture" class="control-label col-md-3">Resim</label>
+        @Html.TextBox("Picture", null, new { @class = "form-control col-md-6" })
+
+
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-6 text-right">
+            <button type="submit" class="btn btn-primary">EKLE</button>
+        </div>
+
+
+
+    </div>
+
+</div>
+
+ }
+    
+    
+
 

@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Kategori Ekle</h2>
+<h6>&nbsp;</h6>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+
+        <div class="form-group">
+            <label for="InputHeader" class="control-label col-md-3" style="text-align:left">Kategori Ad</label>
+            @Html.TextBox("CategoryName", null, new { @class = "form-control col-md-6" })
+        <div class="col-md-3">
+            <button type="submit" class="btn btn-primary">EKLE</button>
+            @Html.ActionLink("Geri", "Index", null, new { @class = "btn btn-primary" })
+        </div>
+           
+        </div>
+
+       
+
+    </div>
+
+}
+

@@ -24,21 +24,34 @@ namespace MvcBlogApp.Controllers
 
             ViewBag.CategoryNames = categorylist;
 
-            return View(_context.Blogs.ToList());
+            return View(_context.Blogs.OrderByDescending(c=> c.UploadDate).ToList());
         }
 
         public ActionResult Create()
         {
-            List<string> categorylist = new List<string>();
-            foreach (var item in _context.Blogs.ToList())
-            {
-                categorylist.Add(_context.Categories.Find(item.CategoryId).CategoryName);
+            ViewBag.CategoryId = new SelectList(_context.Categories, "Id", "CategoryName");
 
-            }
-
-            ViewBag.CategoryNames = categorylist;
-
-            return View(_context.Blogs.ToList());
+            return View();
         }
+
+        [HttpPost]
+        public ActionResult Create(string Header, string Explanation, string Picture, string Content, int CategoryId)
+        {
+
+            Blog _blog = new Blog();
+            _blog.Header = Header;
+            _blog.Explanation = Explanation;
+            _blog.Picture = Picture;
+            _blog.Content = Content;
+            _blog.CategoryId = CategoryId;
+            _blog.UploadDate = DateTime.Now;
+            _context.Blogs.Add(_blog);
+            _context.SaveChanges();
+
+
+
+            return RedirectToAction("Index","Blog");
+        }
+
     }
 }

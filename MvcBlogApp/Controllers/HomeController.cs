@@ -9,13 +9,26 @@ namespace MvcBlogApp.Controllers
 {
     public class HomeController : Controller
     {
-        
+
         public ActionResult Index()
         {
             BlogContext _context = new BlogContext();
-            List<Blog> _list = _context.Blogs.ToList();
+            var blogs = _context.Blogs.Select(b => new BlogModel()
+            {
+                Id = b.Id,
+                Approval = b.Approval,
+                CategoryId = b.CategoryId,
+                Explanation = b.Explanation,
+                Header = b.Header.Length>100?b.Header.Substring(0,100):b.Header,
+                HomePage = b.HomePage,
+                Picture = b.Picture,
+                UploadDate = b.UploadDate
 
-            return View(_list);
+            })
+                .Where(b => b.HomePage == true && b.Approval == true).OrderByDescending(b=>b.UploadDate).ToList();
+
+
+            return View(blogs.ToList());
         }
 
         public ActionResult About()
