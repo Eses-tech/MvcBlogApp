@@ -1,12 +1,16 @@
-﻿
+﻿@using MvcBlogApp.Models
+@model Blog
+
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Edit";
 }
 
-<h2>Blog Ekle</h2>
+<h2>Blog Güncelle</h2>
+<hr />
 @using (Html.BeginForm())
- {
+{
     @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Id)
 <div class="form-horizontal">
 
     <div class="form-group">
@@ -27,7 +31,7 @@
 
     <div class="form-group">
         <label for="InputCategoryName" class="control-label col-md-3">Kategori</label>
-        @Html.DropDownList("CategoryId", null,"Kategori Seçin", new { @class = "form-control col-md-6" })
+        @Html.DropDownList("CategoryId", null, new { @class = "form-control col-md-6" })
 
 
     </div>
@@ -39,19 +43,48 @@
 
     </div>
 
-    <div class="form-group">
-        <div class="col-md-6 text-right">
-            <button type="submit" class="btn btn-primary">EKLE</button>
+    <div class="form-group"  style="display:flex;align-items:center">
+
+        <label for="InputApproval" class="control-label col-md-3"> Onay</label><br />
+        <div class="col-md-6">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.Approval)
+            </div>
         </div>
+
+
+
 
 
 
     </div>
 
+    <div class="form-group"  style="display:flex;align-items:center">
+
+        <label for="InputHomePage" class="control-label col-md-3">Anasayfa Onay</label><br />
+        <div class="col-md-6">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.HomePage)
+            </div>
+        </div>
+
+
+
+
+
+
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-6 text-right">
+            <button type="submit" class="btn btn-primary">GÜNCELLE</button>
+        </div>
+
+
+
+    </div>
 </div>
 
- }
-    
-    
 
+}
 

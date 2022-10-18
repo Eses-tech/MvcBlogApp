@@ -11,6 +11,7 @@ namespace MvcBlogApp.Controllers
     {
         // GET: Category
         private BlogContext _context = new BlogContext();
+       
         public ActionResult Index()
         {
             List<Category> categorylist = _context.Categories.ToList();
@@ -26,10 +27,13 @@ namespace MvcBlogApp.Controllers
 
         }
 
+        
         public ActionResult Create()
         {
             return View();
         }
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(string CategoryName)
@@ -38,6 +42,27 @@ namespace MvcBlogApp.Controllers
             _category.CategoryName = CategoryName;
             _context.Categories.Add(_category);
             _context.SaveChanges();
+            return RedirectToAction("Index","Category");
+        }
+
+
+        public ActionResult Edit(int id)
+        {
+            Category _category = _context.Categories.Find(id);
+           
+            return View(_category);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(int id,string CategoryName)
+        {
+            Category _category = _context.Categories.Find(id);
+            _category.CategoryName = CategoryName;
+            _context.SaveChanges();
+
+            TempData["Category"] = _category;
             return RedirectToAction("Index","Category");
         }
     }

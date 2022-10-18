@@ -11,6 +11,15 @@
 
 </p>
 
+@if (TempData["Category"] != null)
+{
+    var category = (MvcBlogApp.Models.Category)TempData["Category"];
+    <div class="alert alert-success" role="alert">
+        <i class="glyphicon glyphicon-check"></i>
+        Başarıyla Kaydedildi..
+    </div>
+}
+
 <table class="table  table-striped">
     <thead>
         <tr>
@@ -28,9 +37,9 @@
 
                 <td>@Model[i].CategoryName</td>
                 <td>@ViewBag.CategoryNumbers[i]</td>
-                
 
-                
+
+
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = Model[i].Id }, new { @class = "btn btn-warning" })
                     @Html.ActionLink("Delete", "Delete", new { id = Model[i].Id }, new { @class = "btn btn-danger" })

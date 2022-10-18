@@ -6,15 +6,25 @@
 
 <h2>Blog Listesi</h2>
 <p>
-    
-        <a href="~/Blog/Create"<button class="btn btn-success">Yeni Blog Ekle</button></a>
-        
+
+    <a href="~/Blog/Create"<button class="btn btn-success">Yeni Blog Ekle</button></a>
+
 </p>
+
+@if (TempData["Blog"] != null)
+{
+    var blog = (MvcBlogApp.Models.Blog)TempData["Blog"];
+    <div class="alert alert-success" role="alert"><i class="glyphicon glyphicon-check"></i>
+        Başarıyla Kaydedildi..
+    </div>
+}
+
+
 
 <table class="table  table-striped">
     <thead>
         <tr>
-            
+
             <th scope="col">Başlık</th>
             <th scope="col">Kategori</th>
             <th scope="col">İçerik</th>
@@ -25,33 +35,33 @@
         </tr>
     </thead>
     <tbody>
-        @for (int i=0;i<Model.Count;i++)
+        @for (int i = 0; i < Model.Count; i++)
         {
-        <tr>
+            <tr>
 
-            <td>@Model[i].Header</td>
-            <td>@ViewBag.CategoryNames[i]</td>
-            <td>@Model[i].Content</td>
-            <td>@Model[i].UploadDate</td>
-            <td>
-                @if (@Model[i].Approval == true)
-                {
-                    <label class="label label-success ">ONAYLI</label>
-                }
-                @if (@Model[i].Approval == false)
-                {
-                    <label class="label label-danger">ONAY BEKLİYOR</label>
-                }
-            </td>
+                <td>@Model[i].Header</td>
+                <td>@ViewBag.CategoryNames[i]</td>
+                <td>@Model[i].Content</td>
+                <td>@Model[i].UploadDate</td>
+                <td>
+                    @if (@Model[i].Approval == true)
+                    {
+                        <label class="label label-success ">ONAYLI</label>
+                    }
+                    @if (@Model[i].Approval == false)
+                    {
+                        <label class="label label-danger">ONAY BEKLİYOR</label>
+                    }
+                </td>
 
-            <td>@Model[i].Explanation</td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = Model[i].Id }, new {@class="btn btn-warning" })
-                @Html.ActionLink("Delete", "Delete", new { id = Model[i].Id }, new { @class = "btn btn-danger" })
-                
-            </td>
+                <td>@Model[i].Explanation</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = Model[i].Id }, new { @class = "btn btn-warning" })
+                    @Html.ActionLink("Delete", "Delete", new { id = Model[i].Id }, new { @class = "btn btn-danger" })
 
-        </tr>
+                </td>
+
+            </tr>
         }
 
 

@@ -3,8 +3,13 @@
 @{
     ViewBag.Title = "Home Page";
 }
-
+<style>
+    img{
+        width:600px;
+    }
+</style> 
 <h2>Blog Listesi</h2>
+
 
 <div class="row">
     <div class="col-md-8">
@@ -50,8 +55,16 @@
 
     </div>
 
-    <div class="col-md-4">
-
+    <div class="col-md-2 col-md-offset-1">
+        <div class="input-group">
+            <div class="form-outline">
+                <input type="search" id="form1" class="form-control" />
+                <label class="form-label" for="form1">Search</label>
+            </div>
+            <button type="button" class="btn btn-primary">
+                <i class="glyphicon glyphicon-search"></i>
+            </button>
+        </div>
     </div>
 
 </div>
