@@ -65,5 +65,10 @@ namespace MvcBlogApp.Controllers
             TempData["Category"] = _category;
             return RedirectToAction("Index","Category");
         }
+
+        public PartialViewResult CategoryList()
+        {
+            return PartialView(_context.Categories.ToList());
+        }
     }
 }

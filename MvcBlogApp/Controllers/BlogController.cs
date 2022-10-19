@@ -86,5 +86,11 @@ namespace MvcBlogApp.Controllers
             return  RedirectToAction("Index", "Blog");
         }
 
+        public ActionResult Details(int id)
+        {
+            Blog _blog = _context.Blogs.Find(id);
+            return View(_blog);
+        }
+
     }
 }

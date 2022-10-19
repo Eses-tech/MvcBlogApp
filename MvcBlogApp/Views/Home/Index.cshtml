@@ -1,13 +1,13 @@
 ﻿@using MvcBlogApp.Models
-@model List<BlogModel> 
+@model List<BlogModel>
 @{
     ViewBag.Title = "Home Page";
 }
 <style>
-    img{
-        width:600px;
+    img {
+        width: 600px;
     }
-</style> 
+</style>
 <h2>Blog Listesi</h2>
 
 
@@ -17,55 +17,96 @@
         @foreach (var item in Model)
         {
             @*<div class="blogItem">
-                <h3 class="page-header">@item.Header</h3>
-                <p>
-                    <span class="glyphicon glyphicon-time">
-                        @item.UploadDate
-                    </span>
-                </p>
-                <hr />
-                <img class="img-responsive" src="https://via.placeholder.com/900x300" />
-                <p>
-                    @item.Explanation
-                </p>
-                <button class="btn btn-primary">Daha Fazla...</button>
-            </div>*@
+                    <h3 class="page-header">@item.Header</h3>
+                    <p>
+                        <span class="glyphicon glyphicon-time">
+                            @item.UploadDate
+                        </span>
+                    </p>
+                    <hr />
+                    <img class="img-responsive" src="https://via.placeholder.com/900x300" />
+                    <p>
+                        @item.Explanation
+                    </p>
+                    <button class="btn btn-primary">Daha Fazla...</button>
+                </div>*@
             //--------------------------------------------------------------------
-        <div class="card" style="width: 18rem;">
-            <h5 class="card-title">@item.Header</h5>
-           
-            <img class="card-img-top" src="https://via.placeholder.com/900x300" alt="Card image cap">
-            <h6>&nbsp;</h6>
-            <div class="card-body">
+            <div class="card" style="width: 18rem;">
+                <h5 class="card-title">@item.Header</h5>
 
-                <p class="card-text">@item.Explanation</p>
+                <img class="card-img-top" src="https://via.placeholder.com/900x300" alt="Card image cap">
+                <h6>&nbsp;</h6>
+                <div class="card-body">
 
-                <p>
-                    <span class="glyphicon glyphicon-time">
-                        @item.UploadDate
-                    </span>
-                </p>
-                <button class="btn btn-primary">Daha Fazla...</button>
-                <hr />
+                    <p class="card-text">@item.Explanation</p>
+
+                    <p>
+                        <span class="glyphicon glyphicon-time">
+                            @item.UploadDate
+                        </span>
+                    </p>
+
+                    @Html.ActionLink("Daha Fazla..", "Details", "Blog", new { id = item.Id }, new { @class = "btn btn-primary" })
+                    <hr />
+                </div>
+
             </div>
 
-        </div>
-       
         }
 
     </div>
-
-    <div class="col-md-2 col-md-offset-1">
-        <div class="input-group">
-            <div class="form-outline">
-                <input type="search" id="form1" class="form-control" />
-                <label class="form-label" for="form1">Search</label>
-            </div>
-            <button type="button" class="btn btn-primary">
-                <i class="glyphicon glyphicon-search"></i>
-            </button>
-        </div>
     </div>
 
-</div>
+    @section RightSide{
+       
+            <div class="well">
+                <label>Blog Arama</label>
+                <div class="input-group" style="display:flex">
+
+                    <div>
+
+                        <input type="search" id="form1" class="form-control" />
+
+                    </div>
+                    <div>
+                        <button type="button" class="btn btn-primary">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        @{Html.RenderAction("CategoryList", "Category");}
+
+            @*<div class="well">
+                <h4>Kategori Listesi</h4>
+                <div class="row">
+
+                    <div class="col-lg-6">
+                        <ul class="list-unstyled">
+                            <li>
+                                <a href="#">Category Name</a>
+                            </li>
+                            <li>
+                                <a href="#">Category Name</a>
+                            </li>
+                            <li>
+                                <a href="#">Category Name</a>
+                            </li>
+                            <li>
+                                <a href="#">Category Name</a>
+                            </li>
+                            <li>
+                                <a href="#">Category Name</a>
+                            </li>
+
+                        </ul>
+                    </div>
+
+
+                </div>
+            </div>*@
+       
+    }
+
 
