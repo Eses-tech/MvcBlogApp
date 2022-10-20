@@ -13,7 +13,7 @@
     }
 </style>
 
-<h2>Details</h2>
+<h2>Blog Detayları</h2>
 <div class="row">
     <div class="col-md-8">
         <div class="page-header">@Model.Header</div>
@@ -82,22 +82,24 @@
     </div>
     @section RightSide{
 
-        <div class="well">
-            <label>Blog Arama</label>
-            <div class="input-group" style="display:flex">
+        @Html.Partial("SearchPartialView", Model)
 
-                <div>
+        @*<div class="well">
+                <label>Blog Arama</label>
+                <div class="input-group" style="display:flex">
 
-                    <input type="search" id="form1" class="form-control" />
+                    <div>
 
+                        <input type="search" id="form1" class="form-control" />
+
+                    </div>
+                    <div>
+                        <button type="button" class="btn btn-primary">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </div>
                 </div>
-                <div>
-                    <button type="button" class="btn btn-primary">
-                        <i class="glyphicon glyphicon-search"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
+            </div>*@
         @*PartialView*@
         @{Html.RenderAction("CategoryList", "Category");}
 

@@ -13,7 +13,34 @@ namespace MvcBlogApp.Controllers
 
         private BlogContext _context = new BlogContext();
 
-        
+        public ActionResult List(int? id,string Keyword)
+        {
+            var blogs = _context.Blogs.Where(b => b.Approval == true).OrderByDescending(b => b.UploadDate).Select(b => new BlogModel()
+            {
+                Id = b.Id,
+                Approval = b.Approval,
+                CategoryId = b.CategoryId,
+                Explanation = b.Explanation,
+                Header = b.Header.Length > 100 ? b.Header.Substring(0, 100) : b.Header,
+                HomePage = b.HomePage,
+                Picture = b.Picture,
+                UploadDate = b.UploadDate
+                
+
+            })
+             .AsQueryable();
+            if (string.IsNullOrEmpty("Keyword") == false)
+            {
+                blogs = blogs.Where(i => i.Header.Contains(Keyword) || i.Explanation.Contains(Keyword));
+            }
+            if (id!=null)
+            {
+                blogs = blogs.Where(i => i.CategoryId == id);
+            }
+
+            return View(blogs.ToList());
+        }
+
         public ActionResult Index()
         {
             List<string> categorylist = new List<string>();

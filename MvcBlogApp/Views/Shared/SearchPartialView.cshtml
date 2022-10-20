@@ -1,0 +1,24 @@
+﻿@using (Html.BeginForm("List", "Blog",FormMethod.Get))
+{
+
+    <div class="well">
+        <label>Blog Arama</label>
+        <div class="input-group" style="display:flex">
+
+            <div>
+
+                @*<input type="search" id="form1" class="form-control" />*@
+                @Html.TextBox("Keyword", null, new {@class="form-control"})
+
+            </div>
+            <div>
+                <button type="submit" class="btn btn-primary">
+                    <i class="glyphicon glyphicon-search"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+}
+
+
+
